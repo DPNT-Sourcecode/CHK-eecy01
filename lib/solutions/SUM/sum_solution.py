@@ -4,5 +4,3 @@ def compute(x, y):
     assert y > 0 and y < 101
     return x + y
 
-
-
