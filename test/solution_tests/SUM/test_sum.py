@@ -10,3 +10,15 @@ class TestSum():
     def test_sum_x_lt_0(self):
         with pytest.raises(AssertionError):
             sum_solution.compute(-1, 2)
+
+    def test_sum_x_gt_100(self):
+        with pytest.raises(AssertionError):
+            sum_solution.compute(101, 2)
+
+    def test_sum_y_lt_0(self):
+        with pytest.raises(AssertionError):
+            sum_solution.compute(2, -1)
+
+    def test_sum_y_gt_100(self):
+        with pytest.raises(AssertionError):
+            sum_solution.compute(2, 101)
