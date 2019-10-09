@@ -30,4 +30,3 @@ def count_price(checkout_item):
         promotion_price = int(item_count / promo_count) * SPECIAL_OFFER[item][1]
     total_price = promotion_price + PRICES[item] * remainder
     return total_price
-
