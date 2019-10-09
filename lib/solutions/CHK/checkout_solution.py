@@ -2,9 +2,9 @@
 from collections import Counter
 
 PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15}
-# for item dict[count][price]
-SPECIAL_OFFER = {'A': {3: 130}, 'B': {2: 45}}
+SPECIAL_OFFER = {'A3': 130, 'B2': 45}
 SPECIAL_OFFER_KEYS = SPECIAL_OFFER.keys()
+
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
@@ -18,12 +18,9 @@ def checkout(skus):
 
 def count_price(checkout_item):
     # checkout_item - tuple of (item, count)
+    item = checkout_item[0]
     item_count = checkout_item[1]
-    
-    return PRICES[checkout_item[0]] * item_count
+    if item in SPECIAL_OFFER_KEYS[0] and item_count>=int(SPECIAL_OFFER_KEYS[1:]):
 
-
-
-
-
-
+        
+    return PRICES[] * item_count
