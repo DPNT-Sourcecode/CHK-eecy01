@@ -9,6 +9,8 @@ SPECIAL_OFFER_KEYS = SPECIAL_OFFER.keys()
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
+    if not skus:
+        return 0
     if not str.isalpha(skus):
         return -1
     skus = skus.upper()
@@ -32,4 +34,5 @@ def count_price(checkout_item):
         promotion_price = int(item_count / promo_count) * SPECIAL_OFFER[item][1]
     total_price = promotion_price + PRICES[item] * remainder
     return total_price
+
 

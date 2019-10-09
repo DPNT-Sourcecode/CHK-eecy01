@@ -3,7 +3,7 @@ from solutions.CHK import checkout_solution
 class TestCheckout():
 
     def test_skus_none(self):
-        assert checkout_solution.checkout(None) == -1
+        assert checkout_solution.checkout(None) == 0
         
     def test_skus_empty(self):
         assert checkout_solution.checkout('') == 0
@@ -45,4 +45,5 @@ class TestCountPrice():
 
     def test_count_price_special_A(self):
         assert checkout_solution.count_price(('A', 5)) == 230
+
 
