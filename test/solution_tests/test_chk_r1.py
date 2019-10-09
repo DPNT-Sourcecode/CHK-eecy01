@@ -24,4 +24,4 @@ class TestCheckout():
         assert checkout_solution.checkout('AB') == 80
 
     def test_skus_lowcase(self):
-        assert checkout_solution.checkout('ABab') == 80
+        assert checkout_solution.checkout('ADad') == 130
