@@ -23,11 +23,13 @@ def count_price(checkout_item):
     promotion_price = 0
     item = checkout_item[0]
     item_count = checkout_item[1]
+    remainder = item_count
     if item in SPECIAL_OFFER_KEYS and item_count >= SPECIAL_OFFER[item][0]:
         promo_count = SPECIAL_OFFER[item][0]
         remainder = item_count % promo_count
         promo_price = int(item_count / promo_count) * SPECIAL_OFFER[item][1]
     total_price = promotion_price + PRICES[item] * remainder
     return total_price
+
 
 
