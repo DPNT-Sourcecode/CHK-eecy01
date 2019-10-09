@@ -27,7 +27,7 @@ class TestCheckout():
         assert checkout_solution.checkout('ABCa') == -1
 
     def test_skus_x(self):
-        assert checkout_solution.checkout('AxA') == 100
+        assert checkout_solution.checkout('AxA') == -1
 
     def test_skus_special_A(self):
         assert checkout_solution.checkout('AAAAA') == 230
@@ -42,6 +42,7 @@ class TestCountPrice():
 
     def test_count_price_special_A(self):
         assert checkout_solution.count_price(('A', 5)) == 230
+
 
 
 
