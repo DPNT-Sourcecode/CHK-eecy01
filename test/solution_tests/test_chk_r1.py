@@ -25,3 +25,8 @@ class TestCheckout():
 
     def test_skus_lowcase(self):
         assert checkout_solution.checkout('ADad') == 130
+        
+    def test_skus_with_special(self):
+        # 3A + 2A + 2B + B + D + C + D + C + D + C = 3A + 2A + 2B + B + 3C + 3D
+        # = 130 + (2*50) + 45 + 30 + (3*15) + (3*20)
+        assert checkout_solution.checkout('ADABACABABdcDc') == 130 + (2*50) + 45 + 30 + (3*15) + (3*20)
