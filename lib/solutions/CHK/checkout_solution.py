@@ -31,6 +31,3 @@ def count_price(checkout_item):
     print(promotion_price, reminder)
     total_price = promotion_price + PRICES[item] * remainder
     return total_price
-
-
-
