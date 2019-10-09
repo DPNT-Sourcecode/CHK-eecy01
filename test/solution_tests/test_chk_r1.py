@@ -6,7 +6,7 @@ class TestCheckout():
         assert checkout_solution.checkout(None) == -1
         
     def test_skus_empty(self):
-        assert checkout_solution.checkout('') == -1
+        assert checkout_solution.checkout('') == 0
         
     def test_skus_number(self):
         assert checkout_solution.checkout('AB12CD') == -1
@@ -16,15 +16,21 @@ class TestCheckout():
 
     def test_skus_comma(self):
         assert checkout_solution.checkout('A;B') == -1
+
+    def test_skus_illegal_a(self):
+        assert checkout_solution.checkout('a') == -1
         
-    #def test_skus_illegal_item(self):
-        #assert checkout_solution.checkout('ABE') == -1
+    def test_skus_illegal_item(self):
+        assert checkout_solution.checkout('ABE') == -1
 
     def test_skus(self):
         assert checkout_solution.checkout('AB') == 80
 
     def test_skus_lowcase(self):
-        assert checkout_solution.checkout('ADad') == 130
+        assert checkout_solution.checkout('ABCa') == -1
+
+    def test_skus_x(self):
+        assert checkout_solution.checkout('AxA') == 100
 
     def test_skus_special_A(self):
         assert checkout_solution.checkout('AAAAA') == 230
@@ -39,3 +45,4 @@ class TestCountPrice():
 
     def test_count_price_special_A(self):
         assert checkout_solution.count_price(('A', 5)) == 230
+
