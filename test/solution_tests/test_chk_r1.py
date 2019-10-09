@@ -8,4 +8,7 @@ class TestCheckout():
         assert checkout_solution.checkout('AB CD') == -1
 
     def test_skus_comma(self):
-        assert checkout_solution.checkout('A;B') == -1    
+        assert checkout_solution.checkout('A;B') == -1
+
+    def test_skus(self):
+        assert checkout_solution.checkout('AB') == 80 
