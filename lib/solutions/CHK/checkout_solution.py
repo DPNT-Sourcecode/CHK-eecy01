@@ -19,10 +19,12 @@ def checkout(skus):
 
 def count_price(checkout_item):
     # checkout_item - tuple of (item, count)
-    total_price = 0
-    promotion_price = 0
     item = checkout_item[0]
     item_count = checkout_item[1]
+    if item not in PRICES.keys():
+        return 0
+    total_price = 0
+    promotion_price = 0
     remainder = item_count
     if item in SPECIAL_OFFER_KEYS and item_count >= SPECIAL_OFFER[item][0]:
         promo_count = SPECIAL_OFFER[item][0]
@@ -30,3 +32,4 @@ def count_price(checkout_item):
         promotion_price = int(item_count / promo_count) * SPECIAL_OFFER[item][1]
     total_price = promotion_price + PRICES[item] * remainder
     return total_price
+
