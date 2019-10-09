@@ -2,7 +2,8 @@
 from collections import Counter
 
 PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15}
-SPECIAL_OFFER = {'A3': 130, 'B2': 45}
+#
+SPECIAL_OFFER = {'A': (3, 130), 'B': (2, 45)}
 SPECIAL_OFFER_KEYS = SPECIAL_OFFER.keys()
 
 # noinspection PyUnusedLocal
@@ -22,9 +23,11 @@ def count_price(checkout_item):
     promotion_price = 0
     item = checkout_item[0]
     item_count = checkout_item[1]
-    if item in SPECIAL_OFFER_KEYS[0] and item_count >= int(SPECIAL_OFFER_KEYS[1:]):
-        promo_count = int(SPECIAL_OFFER_KEYS[1:])
-        
+    if item in SPECIAL_OFFER_KEYS and item_count >= SPECIAL_OFFER[item][0]:
+        promo_count = SPECIAL_OFFER[item][0]
+        remainder = item_count % promo_count
+        promo_price = int(item_count / promo_count) * SPECIAL_OFFER[item][1]
     total_price = promotion_price + PRICES[item] * remainder
     return total_price
+
 
