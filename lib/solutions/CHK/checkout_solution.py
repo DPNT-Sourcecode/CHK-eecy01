@@ -14,6 +14,8 @@ def checkout(skus):
     skus_sum = sum(map(count_price, skus_counter.items()))
     return skus_counter
 
-def count_price(item, item_count):
+def count_price(item):
+    print(item)
     return PRICES[item] * item_count
+
 
