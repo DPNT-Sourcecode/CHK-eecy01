@@ -16,6 +16,9 @@ class TestCheckout():
 
     def test_skus_comma(self):
         assert checkout_solution.checkout('A;B') == -1
+        
+    #def test_skus_illegal_item(self):
+        #assert checkout_solution.checkout('ABE') == -1
 
     def test_skus(self):
         assert checkout_solution.checkout('AB') == 80
