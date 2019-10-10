@@ -10,12 +10,13 @@ def checkout(skus):
         return 0
     if not str.isalpha(skus) or not str.isupper(skus):
         return -1
+    
     skus = skus.upper()
     
     basket = Counter(skus)
     cm = CheckoutMachine(Products(), DiscountStore())
-    skus_sum = sum(map(cm.count_price, basket.items()), 0)
-    return skus_sum
+    total_price = cm.get_total_price(basket)
+    return total_price
 
 class Products():
     PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15}
@@ -57,5 +58,9 @@ class CheckoutMachine():
             promotion_price = int(item_count / promo_count) * self.discounts.n_for_price[item][promo_count]
         total_price = promotion_price + self.products.get_price(item) * remainder
         return total_price    
+
+    def get_total_price(self, basket):
+        total_price = sum(map(self.count_price, basket.items()), 0)
+        return total_price
 
 
