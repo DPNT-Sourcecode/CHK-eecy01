@@ -70,10 +70,13 @@ class CheckoutMachine():
             discount = self.discounts.xfree_for_y[discount_prod]
             print(discount)
             for discount_quantity in discount.keys():
+                print(discount_quantity)
                 if basket[discount_prod] >= discount_quantity:
                     actual_discounts.update(discount[discount_quantity])
+        print(actual_discounts)
         actual_discounts = Counter(actual_discounts)
-        basket - actual_discounts
+        print(actual_discounts)
+        basket = basket - actual_discounts
 
     def get_total_price(self, basket):
         # internal basket for discounts and other operations
@@ -81,4 +84,5 @@ class CheckoutMachine():
         self.apply_free_discount(cm_basket)
         total_price = sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
+
 
