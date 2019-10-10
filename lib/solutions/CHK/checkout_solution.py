@@ -34,6 +34,7 @@ def count_price(checkout_item):
 
 class Products():
     PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15}
+    
     @classmethod
     def get_price(cls, sku):
         return cls.PRODUCT_PRICES[sku]
@@ -42,6 +43,6 @@ class DiscountStore():
     n_for_price = {'A': {3: 130},
                             'B': {2: 45},
                    }
-    n_for_price_kes = n_for_price.keys()
-    SPECIAL_OFFER_KEYS = SPECIAL_OFFER.keys()
+    n_for_price_keys = n_for_price.keys()
+    #SPECIAL_OFFER_KEYS = SPECIAL_OFFER.keys()
     
