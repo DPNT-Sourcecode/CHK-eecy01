@@ -41,4 +41,7 @@ class TestCheckout():
 class TestCountPrice():
 
     def test_count_price_special_A(self):
-        assert checkout_solution.count_price(('A', 5)) == 230
+        products = checkout_solution.Products()
+        discounts = checkout_solution.DiscountStore()
+        assert checkout_solutio.count_price(('A', 5)) == 230
+

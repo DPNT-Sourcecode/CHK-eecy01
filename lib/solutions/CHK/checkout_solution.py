@@ -13,7 +13,8 @@ def checkout(skus):
     skus = skus.upper()
     
     basket = Counter(skus)
-    skus_sum = sum(map(count_price, basket.items()), 0)
+    cm = CheckoutMachine(Products(), DiscountStore())
+    skus_sum = sum(map(cm.count_price, basket.items()), 0)
     return skus_sum
 
 class Products():
@@ -56,4 +57,5 @@ class CheckoutMachine():
             promotion_price = int(item_count / promo_count) * self.discounts.n_for_price[item][promo_count]
         total_price = promotion_price + self.products.get_price(item) * remainder
         return total_price    
+
 
