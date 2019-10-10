@@ -32,16 +32,16 @@ def count_price(checkout_item):
     total_price = promotion_price + Products.get_price(item) * remainder
     return total_price
 
+
 class Products():
     PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15}
     
-    @classmethod
-    def get_price(cls, sku):
-        return cls.PRODUCT_PRICES[sku]
+    def get_price(self, sku):
+        return self.PRODUCT_PRICES.get(sku, 0)
 
-    @classmethod
-    def get_skus(cls):
-        return cls.PRODUCT_PRICES.keys()
+    def get_skus(self):
+        return self.PRODUCT_PRICES.keys()
+
 
 class DiscountStore():
     n_for_price = {'A': {3: 130, 5: 200},
@@ -51,6 +51,12 @@ class DiscountStore():
 
     xfree_for_y = {'E': {2: {'B': 1}}}
     
+
+class CheckoutMachine():
     
+    def __init__(self, products, discounts):
+        self.products =
+
+
 
 
