@@ -33,9 +33,9 @@ class TestCheckout():
         assert checkout_solution.checkout('AAAA') == 180
     
     def test_skus_with_special(self):
-        # 3A + 2A + 2B + B + D + C + D + C + D + C = 3A + 2A + 2B + B + 3C + 3D
-        # = 130 + (2*50) + 45 + 30 + (3*15) + (3*20) =
-        assert checkout_solution.checkout('ADABACABABDCDC') == 130 + (2 * 50) + 45 + 30 + (3 * 15) + (3 * 20)
+        # 3A + A + 2B + B + D + C + D + C + D + C = 3A + 2A + 2B + B + 3C + 3D
+        # = 130 + 50 + 45 + 30 + (3*15) + (3*20) = 360
+        assert checkout_solution.checkout('ADABACBABDCDC') == 130 + 50 + 45 + 30 + (3 * 15) + (3 * 20)
         
 
 class TestCountPrice():
@@ -45,4 +45,5 @@ class TestCountPrice():
         discounts = checkout_solution.DiscountStore()
         cm = checkout_solution.CheckoutMachine(products, discounts)
         assert cm.count_price(('A', 4)) == 180
+
 
