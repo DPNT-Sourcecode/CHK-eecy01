@@ -16,24 +16,6 @@ def checkout(skus):
     skus_sum = sum(map(count_price, basket.items()), 0)
     return skus_sum
 
-def count_price(checkout_item):
-    # checkout_item - tuple of (item, count)
-    item = checkout_item[0]
-    item_count = checkout_item[1]
-    products = Products()
-    if item not in products.get_skus():
-        return 0
-    total_price = 0
-    promotion_price = 0
-    remainder = item_count
-    if item in DiscountStore.n_for_price_keys and item_count >= list(DiscountStore.n_for_price[item].keys())[0]:
-        promo_count = list(DiscountStore.n_for_price[item].keys())[0]
-        remainder = item_count % promo_count
-        promotion_price = int(item_count / promo_count) * DiscountStore.n_for_price[item][promo_count]
-    total_price = promotion_price + products.get_price(item) * remainder
-    return total_price
-
-
 class Products():
     PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15}
     
@@ -58,4 +40,20 @@ class CheckoutMachine():
     def __init__(self, products, discounts):
         self.products = products
         self.discounts = discounts
+
+    def count_price(self, checkout_item):
+        # checkout_item - tuple of (item, count)
+        item = checkout_item[0]
+        item_count = checkout_item[1]
+        if item not in self.products.get_skus():
+            return 0
+        total_price = 0
+        promotion_price = 0
+        remainder = item_count
+        if item in self.discounts.n_for_price_keys and item_count >= list(self.discounts.n_for_price[item].keys())[0]:
+            promo_count = list(self.discounts.n_for_price[item].keys())[0]
+            remainder = item_count % promo_count
+            promotion_price = int(item_count / promo_count) * self.discounts.n_for_price[item][promo_count]
+        total_price = promotion_price + self.products.get_price(item) * remainder
+        return total_price    
 
