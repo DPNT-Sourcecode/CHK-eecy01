@@ -70,7 +70,7 @@ class CheckoutMachine():
             for discount_quantity in discount.keys():
                 if basket[discount_prod] >= discount_quantity:
                     multiple = int(basket[discount_prod] / discount_quantity)
-                    actual_discounts.update(discount[discount_quantity]*multiple)
+                    actual_discounts.update([discount[discount_quantity]]*multiple)
         actual_discounts = Counter(actual_discounts)
         return basket - actual_discounts
 
@@ -80,6 +80,7 @@ class CheckoutMachine():
         cm_basket = self.apply_free_discount(cm_basket)
         total_price = sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
+
 
 
 
