@@ -41,3 +41,21 @@ class TestCheckoutMachine():
         basket = Counter({'E': 2})
         expected_basket = {'E': 2}
         assert self.cm.apply_free_discount(basket) == expected_basket
+
+    def test_count_price_A2(self):
+        assert self.cm.count_price(('A', 2)) == 100
+
+    def test_count_price_A3(self):
+        assert self.cm.count_price(('A', 3)) == 130
+
+    def test_count_price_A4(self):
+        assert self.cm.count_price(('A', 4)) == 180
+
+    def test_count_price_A5(self):
+        assert self.cm.count_price(('A', 5)) == 200
+
+    def test_count_price_A6(self):
+        assert self.cm.count_price(('A', 6)) == 250
+
+    # def test_count_price_B1E2(self):
+    #    assert self.cm.count_price(('B', 1)) == 100
