@@ -63,11 +63,14 @@ class CheckoutMachine():
         products = set(basket.keys())
         all_free_discount_prods = set(self.discounts.xfree_for_y.keys())
         free_discount_prods = products & all_free_discount_prods
+        print(all_free_discount_prods, free_discount_prods)
         actual_discounts = {}
         for discount_prod in free_discount_prods:
+            print(discount_prod)
             discount = self.discounts.xfree_for_y[discount_prod]
+            print(discount)
             for discount_quantity in discount.keys():
-                if basket[discount_prod] > discount_quantity:
+                if basket[discount_prod] >= discount_quantity:
                     actual_discounts.update(discount[discount_quantity])
         actual_discounts = Counter(actual_discounts)
         basket - actual_discounts
@@ -78,3 +81,4 @@ class CheckoutMachine():
         self.apply_free_discount(cm_basket)
         total_price = sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
+
