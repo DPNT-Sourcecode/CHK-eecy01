@@ -60,7 +60,7 @@ class CheckoutMachine():
         return total_price    
 
     def apply_free_discount(self, basket):
-        return basket
+        pass
         
     def get_total_price(self, basket):
         # internal basket for discounts and other operations
