@@ -76,4 +76,4 @@ class TestCheckoutMachine():
 
     def test_get_total_price_E4B2(self):
         # "EEEEBB"
-        assert self.cm.get_total_price(Counter({'E': 4, 'B': 2})) == 190
+        assert self.cm.get_total_price(Counter({'E': 4, 'B': 2})) == 160

@@ -54,6 +54,7 @@ class CheckoutMachine():
         remainder = item_count
         if item in self.discounts.n_for_price_keys:
             for item_quantity in sorted(self.discounts.n_for_price[item].keys(), reverse=True):
+                print(remainder, item_quantity, promotion_price)
                 if remainder >= item_quantity:
                     remainder = item_count % item_quantity
                     promotion_price += int(item_count / item_quantity) * self.discounts.n_for_price[item][item_quantity]
