@@ -19,7 +19,7 @@ def checkout(skus):
     return total_price
 
 class Products():
-    PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15}
+    PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40}
     
     def get_price(self, sku):
         return self.PRODUCT_PRICES.get(sku, 0)
@@ -62,5 +62,6 @@ class CheckoutMachine():
     def get_total_price(self, basket):
         total_price = sum(map(self.count_price, basket.items()), 0)
         return total_price
+
 
 
