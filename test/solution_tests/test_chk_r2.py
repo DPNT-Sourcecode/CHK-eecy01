@@ -47,6 +47,3 @@ class TestCheckoutMachine():
         expected_basket = {'E': 2}
         self.cm.apply_free_discount(basket)
         assert basket == expected_basket        
-
-
-
