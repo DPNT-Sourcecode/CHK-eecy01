@@ -57,5 +57,5 @@ class TestCheckoutMachine():
     def test_count_price_A6(self):
         assert self.cm.count_price(('A', 6)) == 250
 
-    # def test_count_price_B1E2(self):
-    #    assert self.cm.count_price(('B', 1)) == 100
+    def test_get_total_price_B1E2(self):
+        assert self.cm.count_price(Counter({'B', 1}) == 100
