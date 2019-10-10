@@ -44,11 +44,13 @@ class Products():
         return cls.PRODUCT_PRICES.keys()
 
 class DiscountStore():
-    n_for_price = {'A': {3: 130},
+    n_for_price = {'A': {3: 130, 5: 200},
                             'B': {2: 45},
                    }
     n_for_price_keys = n_for_price.keys()
-    #SPECIAL_OFFER_KEYS = SPECIAL_OFFER.keys()
+
+    xfree_for_y = {'E': {2: {'B': 1}}}
+    
     
 
 
