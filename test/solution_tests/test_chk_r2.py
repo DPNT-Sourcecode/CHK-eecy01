@@ -64,4 +64,16 @@ class TestCheckoutMachine():
         assert self.cm.get_total_price(Counter({'B': 2, 'E': 2})) == 110
 
     def test_get_total_price_B3E2(self):
-        assert self.cm.get_total_price(Counter({'B': 3, 'E': 2})) == 125 
+        assert self.cm.get_total_price(Counter({'B': 3, 'E': 2})) == 125
+        
+    def test_get_total_price_A8(self):
+        # "AAAAAAAA"
+        assert self.cm.get_total_price(Counter({'A': 8})) == 330
+
+    def test_get_total_price_A9(self):
+        # "AAAAAAAAA"
+        assert self.cm.get_total_price(Counter({'A': 9})) == 380
+
+    def test_get_total_price_E4B2(self):
+        # "EEEEBB"
+        assert self.cm.get_total_price(Counter({'E': 4, 'B': 2})) == 190

@@ -45,5 +45,3 @@ class TestCountPrice():
         discounts = checkout_solution.DiscountStore()
         cm = checkout_solution.CheckoutMachine(products, discounts)
         assert cm.count_price(('A', 4)) == 180
-
-
