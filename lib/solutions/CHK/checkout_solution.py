@@ -20,7 +20,8 @@ def count_price(checkout_item):
     # checkout_item - tuple of (item, count)
     item = checkout_item[0]
     item_count = checkout_item[1]
-    if item not in Products.get_skus():
+    products = Products()
+    if item not in products.get_skus():
         return 0
     total_price = 0
     promotion_price = 0
@@ -29,7 +30,7 @@ def count_price(checkout_item):
         promo_count = list(DiscountStore.n_for_price[item].keys())[0]
         remainder = item_count % promo_count
         promotion_price = int(item_count / promo_count) * DiscountStore.n_for_price[item][promo_count]
-    total_price = promotion_price + Products.get_price(item) * remainder
+    total_price = promotion_price + products.get_price(item) * remainder
     return total_price
 
 
@@ -55,8 +56,6 @@ class DiscountStore():
 class CheckoutMachine():
     
     def __init__(self, products, discounts):
-        self.products =
-
-
-
+        self.products = products
+        self.discounts = discounts
 
