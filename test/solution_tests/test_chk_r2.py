@@ -39,11 +39,12 @@ class TestCheckoutMachine():
     def test_apply_free_discount_B2E2(self):
         basket = Counter({'B': 2, 'E': 2})
         expected_basket = {'B': 1, 'E': 2}
-        self.cm.apply_free_discount(basket)
-        assert basket == expected_basket
+
+        assert self.cm.apply_free_discount(basket) == expected_basket
 
     def test_apply_free_discount_E2(self):
         basket = Counter({'E': 2})
         expected_basket = {'E': 2}
         self.cm.apply_free_discount(basket)
         assert basket == expected_basket        
+
