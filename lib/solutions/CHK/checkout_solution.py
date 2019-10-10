@@ -59,8 +59,14 @@ class CheckoutMachine():
         total_price = promotion_price + self.products.get_price(item) * remainder
         return total_price    
 
+    def apply_free_discount(self, basket):
+        return basket
+        
     def get_total_price(self, basket):
-        total_price = sum(map(self.count_price, basket.items()), 0)
+        # internal basket for discounts and other operations
+        cm_basket = basket.copy()
+        self.apply_free_discount(cm_basket)
+        total_price = sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
 
 
