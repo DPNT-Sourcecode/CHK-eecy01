@@ -12,8 +12,8 @@ def checkout(skus):
         return -1
     skus = skus.upper()
     
-    skus_counter = Counter(skus)
-    skus_sum = sum(map(count_price, skus_counter.items()), 0)
+    basket = Counter(skus)
+    skus_sum = sum(map(count_price, basket.items()), 0)
     return skus_sum
 
 def count_price(checkout_item):
@@ -25,8 +25,8 @@ def count_price(checkout_item):
     total_price = 0
     promotion_price = 0
     remainder = item_count
-    if item in DiscountStore.n_for_price_keys and item_count >= DiscountStore.n_for_price[item].keys()[0]:
-        promo_count = DiscountStore.n_for_price[item].keys()[0]
+    if item in DiscountStore.n_for_price_keys and item_count >= list(DiscountStore.n_for_price[item].keys())[0]:
+        promo_count = list(DiscountStore.n_for_price[item].keys())[0]
         remainder = item_count % promo_count
         promotion_price = int(item_count / promo_count) * DiscountStore.n_for_price[item][promo_count]
     total_price = promotion_price + Products.get_price(item) * remainder
@@ -50,4 +50,5 @@ class DiscountStore():
     n_for_price_keys = n_for_price.keys()
     #SPECIAL_OFFER_KEYS = SPECIAL_OFFER.keys()
     
+
 
