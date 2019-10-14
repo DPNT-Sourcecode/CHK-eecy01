@@ -19,7 +19,7 @@ def checkout(skus):
     return total_price
 
 class Products():
-    PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40}
+    PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40, 'F': 10}
     
     def get_price(self, sku):
         return self.PRODUCT_PRICES.get(sku, 0)
@@ -34,7 +34,9 @@ class DiscountStore():
                    }
     n_for_price_keys = n_for_price.keys()
 
-    xfree_for_y = {'E': {2: {'B': 1}}}
+    xfree_for_y = {'E': {2: {'B': 1}},
+                            'F': {2: {'F': 1}},
+                            }
     
 
 class CheckoutMachine():
