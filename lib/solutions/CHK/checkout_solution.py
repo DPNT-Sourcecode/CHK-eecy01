@@ -78,12 +78,14 @@ class CheckoutMachine():
         discount = self.discounts.xfree_for_y[discount_prod]
         print(discount_prod, discount)
         for discount_quantity in discount.keys():
-            return self.free_discount_for_other_product(discount_quantity, basket, discount_prod, discount)
+            if basket[discount_prod] >= discount_quantity:
+                free_discount_item = discount[discount_quantity].copy().popitem()
+                if discount_prod != free_discount_item[0]:
+                    return self.free_discount_for_other_product(discount_quantity, basket, discount_prod, discount, free_discount_item)
 
-    def free_discount_for_other_product(self, discount_quantity, basket, discount_prod, discount):
-        if basket[discount_prod] >= discount_quantity:
+    def free_discount_for_other_product(self, discount_quantity, basket, discount_prod, discount, free_discount_item):
             multiple = int(basket[discount_prod] / discount_quantity)
-            free_discount_item = discount[discount_quantity].copy().popitem()
+            # free_discount_item = discount[discount_quantity].copy().popitem()
             return {free_discount_item[0]: free_discount_item[1] * multiple}
 
     def get_total_price(self, basket):
@@ -92,5 +94,6 @@ class CheckoutMachine():
         cm_basket = self.apply_free_discount(cm_basket)
         total_price = sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
+
 
 
