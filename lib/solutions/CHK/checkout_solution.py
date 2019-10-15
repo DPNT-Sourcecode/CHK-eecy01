@@ -20,16 +20,9 @@ def checkout(skus):
 
 class Products():
     PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40, 'F': 10, 'G': 20,
-                      'H': 10, 'I': 35, 'J': 60, 'K': 80, 'L': 90, 'M': 15, 'N': 40, 'O': 10, 'P': 50,
-                      'Q': 30, 'R': 50 | |
-                      | S | 30 | |
-                      | T | 20 | |
-                      | U | 40 | |
-                      | V | 50 | |
-                      | W | 20 | |
-                      | X | 90 | |
-                      | Y | 10 | |
-                      | Z | 50}
+                                    'H': 10, 'I': 35, 'J': 60, 'K': 80, 'L': 90, 'M': 15, 'N': 40,
+                                    'O': 10, 'P': 50, 'Q': 30, 'R': 50, 'S': 30, 'T': 20, 'U': 40,
+                                    'V': 50, 'W': 20, 'X': 90, 'Y': 10, 'Z': 50}
     
     def get_price(self, sku):
         return self.PRODUCT_PRICES.get(sku, 0)
@@ -53,9 +46,9 @@ class DiscountStore():
                             'F': {2: {'F': 1}},
                             'N': {3: {'M': 1}},  # 3N get one M free
                             'R': {3: {'Q': 1}},  # 3R get one Q free
-                            'U': {3: {'U': 1}}, #3U get one U free
+                            'U': {3: {'U': 1}},  # 3U get one U free
                    }
-    
+
 
 class CheckoutMachine():
     
@@ -117,5 +110,6 @@ class CheckoutMachine():
         cm_basket = self.apply_free_discount(cm_basket)
         total_price = sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
+
 
 
