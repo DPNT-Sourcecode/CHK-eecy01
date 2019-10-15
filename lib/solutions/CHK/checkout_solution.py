@@ -20,10 +20,10 @@ def checkout(skus):
 
 class Products():
     PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40, 'F': 10, 'G': 20,
-                                    'H': 10, 'I': 35, 'J': 60, 'K': 80, 'L': 90, 'M': 15, 'N': 40,
-                                    'O': 10, 'P': 50, 'Q': 30, 'R': 50, 'S': 30, 'T': 20, 'U': 40,
-                                    'V': 50, 'W': 20, 'X': 90, 'Y': 10, 'Z': 50}
-    
+                                    'H': 10, 'I': 35, 'J': 60, 'K': 70, 'L': 90, 'M': 15, 'N': 40,
+                                    'O': 10, 'P': 50, 'Q': 30, 'R': 50, 'S': 20, 'T': 20, 'U': 40,
+                                    'V': 50, 'W': 20, 'X': 17, 'Y': 20, 'Z': 21}
+
     def get_price(self, sku):
         return self.PRODUCT_PRICES.get(sku, 0)
 
@@ -32,23 +32,27 @@ class Products():
 
 
 class DiscountStore():
-    n_for_price = {'A': {3: 130, 5: 200},
+    n_for_price = {'A': {3: 130, 5: 200},  # 3A for 130, 5A for 200
                             'B': {2: 45},
                             'H': {5: 45, 10: 80},  # 5Hfor 45, 10H for 80
-                            'K': {2: 150},  # 2K for 150
+                            'K': {2: 120},  # 2K for 120
                             'P': {5: 200},  # 5P for 200
                             'Q': {3: 80},  # 3Q for 80
                             'V': {2: 90, 3: 130}  # 2V for 90, 3V for 130
                    }
     n_for_price_keys = n_for_price.keys()
 
-    xfree_for_y = {'E': {2: {'B': 1}},
-                            'F': {2: {'F': 1}},
+    xfree_for_y = {'E': {2: {'B': 1}},  # 2E get one B free
+                            'F': {2: {'F': 1}},  # 2F get one F free
                             'N': {3: {'M': 1}},  # 3N get one M free
                             'R': {3: {'Q': 1}},  # 3R get one Q free
                             'U': {3: {'U': 1}},  # 3U get one U free
                    }
-
+    #| buy any 3 of(S, T, X, Y, Z) for 45 |
+     #| buy any 3 of(S, T, X, Y, Z) for 45 |
+     #buy any 3 of(S, T, X, Y, Z) for 45 |
+     #buy any 3 of(S, T, X, Y, Z) for 45 |
+     #buy any 3 of(S, T, X, Y, Z) for 45 |
 
 class CheckoutMachine():
     
