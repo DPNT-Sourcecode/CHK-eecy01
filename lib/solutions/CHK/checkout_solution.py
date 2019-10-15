@@ -19,7 +19,18 @@ def checkout(skus):
     return total_price
 
 class Products():
-    PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40, 'F': 10}
+    PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40, 'F': 10, 'G': 20,
+                      'H': 10, 'I': 35, 'J': 60, 'K': 80, 'L': 90, 'M': 15, 'N': 40, 'O': 10, 'P': 50 | |
+                      | Q | 30 | 3Q for 80 |
+                      | R | 50 | 3R get one Q free |
+                      | S | 30 | |
+                      | T | 20 | |
+                      | U | 40 | 3U get one U free |
+                      | V | 50 | 2V for 90, 3V for 130 |
+                      | W | 20 | |
+                      | X | 90 | |
+                      | Y | 10 | |
+                      | Z | 50}
     
     def get_price(self, sku):
         return self.PRODUCT_PRICES.get(sku, 0)
@@ -31,11 +42,16 @@ class Products():
 class DiscountStore():
     n_for_price = {'A': {3: 130, 5: 200},
                             'B': {2: 45},
+                            'H': {5: 45, 10: 80}, # 5Hfor 45, 10H for 80
+                            'K': {2: 150}, #2K for 150
+                            'P': {5: 200}, #5P for 200 
+                            
                    }
     n_for_price_keys = n_for_price.keys()
 
     xfree_for_y = {'E': {2: {'B': 1}},
                             'F': {2: {'F': 1}},
+                            'N': {3: {'M': 1}},  # 3N get one M free
                    }
     
 
