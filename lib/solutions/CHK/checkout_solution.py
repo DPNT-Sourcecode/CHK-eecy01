@@ -20,9 +20,8 @@ def checkout(skus):
 
 class Products():
     PRODUCT_PRICES = {'A': 50, 'B': 30, 'C': 20, 'D': 15, 'E': 40, 'F': 10, 'G': 20,
-                      'H': 10, 'I': 35, 'J': 60, 'K': 80, 'L': 90, 'M': 15, 'N': 40, 'O': 10, 'P': 50 | |
-                      | Q | 30 | 3Q for 80 |
-                      | R | 50 | 3R get one Q free |
+                      'H': 10, 'I': 35, 'J': 60, 'K': 80, 'L': 90, 'M': 15, 'N': 40, 'O': 10, 'P': 50,
+                      'Q': 30, 'R': 50 | |
                       | S | 30 | |
                       | T | 20 | |
                       | U | 40 | 3U get one U free |
@@ -42,16 +41,18 @@ class Products():
 class DiscountStore():
     n_for_price = {'A': {3: 130, 5: 200},
                             'B': {2: 45},
-                            'H': {5: 45, 10: 80}, # 5Hfor 45, 10H for 80
-                            'K': {2: 150}, #2K for 150
-                            'P': {5: 200}, #5P for 200 
-                            
+                            'H': {5: 45, 10: 80},  # 5Hfor 45, 10H for 80
+                            'K': {2: 150},  # 2K for 150
+                            'P': {5: 200},  # 5P for 200
+                            'Q': {3: 80},  # 3Q for 80
+
                    }
     n_for_price_keys = n_for_price.keys()
 
     xfree_for_y = {'E': {2: {'B': 1}},
                             'F': {2: {'F': 1}},
                             'N': {3: {'M': 1}},  # 3N get one M free
+                            'R': {3: {'Q': 1}}, # 3R get one Q free
                    }
     
 
@@ -115,3 +116,4 @@ class CheckoutMachine():
         cm_basket = self.apply_free_discount(cm_basket)
         total_price = sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
+
