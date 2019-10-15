@@ -121,6 +121,3 @@ class CheckoutMachine():
         cm_basket = self.apply_group_discount(cm_basket)
         total_price = sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
-
-
-
