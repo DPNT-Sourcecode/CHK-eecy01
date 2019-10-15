@@ -127,6 +127,7 @@ class CheckoutMachine():
                     group_total_price = discount[discount_quantity] * multiple
                     # update basket
                     for prod in discount_prods:
+                        print(prod, discount_quantity)
                         if discount_quantity <= 0:
                             break
                         actual_discounts[prod] = discount_quantity
@@ -144,6 +145,7 @@ class CheckoutMachine():
         cm_basket, group_total_price = self.apply_group_discount(cm_basket)
         total_price = group_total_price + sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
+
 
 
 
