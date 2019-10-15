@@ -14,9 +14,9 @@ class TestCheckoutMachine():
     def test_apply_group_discount_S1T1(self):
         basket = Counter({'S': 1, 'T': 1})
         expected_basket = {'S': 1, 'T': 1}
-        result = self.cm.apply_free_discount(basket)
-        assert result[0] == expected_basket
-        assert result[1] == 40
+        new_basket, price = self.cm.apply_free_discount(basket)
+        assert new_basket == expected_basket
+        assert price == 40
         
     def test_get_total_price_S1T1(self):
         basket = Counter({'S': 1, 'T': 1})

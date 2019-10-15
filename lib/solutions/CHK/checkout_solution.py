@@ -126,7 +126,9 @@ class CheckoutMachine():
                     actual_discounts[prod] = discount_quantity
                     discount_quantity -= basket[prod]
         actual_discounts = Counter(actual_discounts)
-        return (basket - actual_discounts, group_total_price)
+        print(actual_discounts)
+        print(basket)
+        return basket - actual_discounts, group_total_price
 
     def get_total_price(self, basket):
         # internal basket for discounts and other operations
