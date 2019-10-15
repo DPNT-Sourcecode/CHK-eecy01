@@ -42,4 +42,3 @@ class TestCheckoutMachine():
     def test_get_total_price_S1T1(self):
         basket = Counter({'S': 1, 'T': 1})
         assert self.cm.get_total_price(basket) == 40
-
