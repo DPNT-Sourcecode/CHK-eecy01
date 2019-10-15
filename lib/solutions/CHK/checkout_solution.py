@@ -48,11 +48,9 @@ class DiscountStore():
                             'R': {3: {'Q': 1}},  # 3R get one Q free
                             'U': {3: {'U': 1}},  # 3U get one U free
                    }
-    #| buy any 3 of(S, T, X, Y, Z) for 45 |
-     #| buy any 3 of(S, T, X, Y, Z) for 45 |
-     #buy any 3 of(S, T, X, Y, Z) for 45 |
-     #buy any 3 of(S, T, X, Y, Z) for 45 |
-     #buy any 3 of(S, T, X, Y, Z) for 45 |
+
+    any_for_price = {(S, T, X, Y, Z): {3: 45}}  # buy any 3 of (S, T, X, Y, Z) for 45
+    any_for_price_keys = any_for_price.keys()
 
 class CheckoutMachine():
     
