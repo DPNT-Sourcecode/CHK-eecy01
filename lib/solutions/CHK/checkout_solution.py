@@ -111,6 +111,7 @@ class CheckoutMachine():
         all_group_discount_prods = set(self.discounts.any_for_price.keys())
         discount_prods = products & all_group_discount_prods
         actual_discounts = {}
+        actual_discounts = Counter(actual_discounts)
         return basket - actual_discounts
 
     def get_total_price(self, basket):
@@ -120,5 +121,6 @@ class CheckoutMachine():
         cm_basket = self.apply_group_discount(cm_basket)
         total_price = sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
+
 
 
