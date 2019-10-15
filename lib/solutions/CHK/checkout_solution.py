@@ -107,17 +107,30 @@ class CheckoutMachine():
         return {free_discount_item[0]: free_discount_item[1] * multiple}        
 
     def apply_group_discount(self, basket):
+        group_total_price = 0
         products = set(basket.keys())
         all_group_discount_prods = set(self.discounts.any_for_price.keys())
         discount_prods = products & all_group_discount_prods
         actual_discounts = {}
+        if dicount_prods:
+            discount = self.discounts.any_for_price.values()
+            discount_quantity = discount.keys()
+            total_quantity = sum([basket[k] for k in discount_prods])
+            if total_quantity >= discount_quantity:
+                for prod in discount_prods:
+                    if discount_quantity <= 0:
+                        break
+                    actual_discounts[prod] = discount_quantity
+                    discount_quantity -= basket[prod]
+
+                
         actual_discounts = Counter(actual_discounts)
-        return basket - actual_discounts
+        return (basket - actual_discounts, group_total_price)
 
     def get_total_price(self, basket):
         # internal basket for discounts and other operations
         cm_basket = basket.copy()
         cm_basket = self.apply_free_discount(cm_basket)
-        cm_basket = self.apply_group_discount(cm_basket)
-        total_price = sum(map(self.count_price, cm_basket.items()), 0)
+        cm_basket, group_total_price = self.apply_group_discount(cm_basket)
+        total_price = group_total_price + sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
