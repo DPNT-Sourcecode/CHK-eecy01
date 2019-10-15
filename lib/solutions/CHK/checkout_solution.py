@@ -116,19 +116,21 @@ class CheckoutMachine():
         print(all_group_discount_prods)
         print(discount_prods)
         if discount_prods:
-            discount = self.discounts.any_for_price.values()
-            print(discount)
-            discount_quantity = discount.keys()
-            total_quantity = sum([basket[k] for k in discount_prods])
-            if total_quantity >= discount_quantity:
-                multiple = int(total_quantity / discount_quantity)
-                group_total_price = discount.values() * multiple
-                # update basket
-                for prod in discount_prods:
-                    if discount_quantity <= 0:
-                        break
-                    actual_discounts[prod] = discount_quantity
-                    discount_quantity -= basket[prod]
+            for discount in self.discounts.any_for_price.values():
+                print(discount)
+                discount_quantity = list(discount.keys())[0]
+                total_quantity = sum([basket[k] for k in discount_prods])
+                print(total_quantity, discount_quantity)
+                
+                if total_quantity >= discount_quantity:
+                    multiple = int(total_quantity / discount_quantity)
+                    group_total_price = discount[discount_quantity] * multiple
+                    # update basket
+                    for prod in discount_prods:
+                        if discount_quantity <= 0:
+                            break
+                        actual_discounts[prod] = discount_quantity
+                        discount_quantity -= basket[prod]
         actual_discounts = Counter(actual_discounts)
         print(actual_discounts)
         print(basket)
@@ -142,5 +144,6 @@ class CheckoutMachine():
         cm_basket, group_total_price = self.apply_group_discount(cm_basket)
         total_price = group_total_price + sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
+
 
 
