@@ -125,15 +125,21 @@ class CheckoutMachine():
                 if total_quantity >= discount_quantity:
                     multiple = int(total_quantity / discount_quantity)
                     group_total_price = discount[discount_quantity] * multiple
+                    total_discount_quantity = discount_quantity * multiple
                     # update basket
                     for prod in discount_prods:
                         print(prod, discount_quantity)
-                        if discount_quantity <= 0:
+                        if total_discount_quantity <= 0:
                             break
-                        actual_discounts[prod] = discount_quantity * multiple
+                        current_discount_quantity = 0
+                        if total_discount_quantity > basket[prod]:
+                            current_discount_quantity = basket[prod]
+                        else:
+                            current_discount_quantity = total_discount_quantity
+                        actual_discounts[prod] = current_discount_quantity
                         print(actual_discounts)
                         print(basket[prod])
-                        discount_quantity -= basket[prod]
+                        total_discount_quantity -= current_discount_quantity
         actual_discounts = Counter(actual_discounts)
         print(actual_discounts)
         print(basket)
