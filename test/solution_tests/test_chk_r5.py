@@ -18,13 +18,6 @@ class TestCheckoutMachine():
         assert new_basket == expected_basket
         assert total_discount_price == 0
         
-    def test_apply_group_discount_S1T1(self):
-        basket = Counter({'S': 1, 'T': 1})
-        expected_basket = {'S': 1, 'T': 1}
-        new_basket, total_discount_price = self.cm.apply_group_discount(basket)
-        assert new_basket == expected_basket
-        assert total_discount_price == 0
-
     def test_apply_group_discount_S1T1X1(self):
         basket = Counter({'S': 1, 'T': 1, 'X': 1})
         expected_basket = {}
@@ -32,9 +25,9 @@ class TestCheckoutMachine():
         assert new_basket == expected_basket
         assert total_discount_price == 45
 
-    def test_apply_group_discount_S4T3Z2(self):
-        basket = Counter({'S': 4, 'T': 3, 'Z': 2})
-        expected_basket = {}
+    def test_apply_group_discount_S4T3Z2A1(self):
+        basket = Counter({'S': 4, 'T': 3, 'Z': 2, 'A': 1})
+        expected_basket = {'A': 1}
         new_basket, total_discount_price = self.cm.apply_group_discount(basket)
         assert new_basket == expected_basket
         assert total_discount_price == 135
@@ -49,6 +42,14 @@ class TestCheckoutMachine():
     def test_get_total_price_S1T1(self):
         basket = Counter({'S': 1, 'T': 1})
         assert self.cm.get_total_price(basket) == 40
+
+    def test_get_total_price_S1T1X1(self):
+        basket = Counter({'S': 1, 'T': 1, 'X': 1})
+        assert self.cm.get_total_price(basket) == 45
+
+    def test_get_total_price_S4T3Z2A1(self):
+        basket = Counter({'S': 4, 'T': 3, 'Z': 2, 'A': 1})
+        assert self.cm.get_total_price(basket) == 135 + 50
         
     def test_get_total_price_S1T1X4Y1Z3(self):
         basket = Counter({'S': 1, 'T': 1, 'X': 4, 'Y': 1, 'Z': 3})
