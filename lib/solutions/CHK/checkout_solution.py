@@ -116,10 +116,11 @@ class CheckoutMachine():
         print(all_group_discount_prods)
         print(discount_prods)
         if discount_prods:
+            sorted_discount_prods = sorted(discount_prods, key=lambda k: self.products.get_price(k), reverse=True)
             for discount in self.discounts.any_for_price.values():
                 print(discount)
                 discount_quantity = list(discount.keys())[0]
-                total_quantity = sum([basket[k] for k in discount_prods])
+                total_quantity = sum([basket[k] for k in sorted_discount_prods])
                 print(total_quantity, discount_quantity)
                 
                 if total_quantity >= discount_quantity:
@@ -127,8 +128,7 @@ class CheckoutMachine():
                     group_total_price = discount[discount_quantity] * multiple
                     total_discount_quantity = discount_quantity * multiple
                     # update basket
-                    for prod in discount_prods:
-                        print(prod, discount_quantity)
+                    for prod in sorted_discount_prods:
                         if total_discount_quantity <= 0:
                             break
                         current_discount_quantity = 0
@@ -137,13 +137,8 @@ class CheckoutMachine():
                         else:
                             current_discount_quantity = total_discount_quantity
                         actual_discounts[prod] = current_discount_quantity
-                        print(actual_discounts)
-                        print(basket[prod])
                         total_discount_quantity -= current_discount_quantity
         actual_discounts = Counter(actual_discounts)
-        print(actual_discounts)
-        print(basket)
-        print(group_total_price)
         return basket - actual_discounts, group_total_price
 
     def get_total_price(self, basket):
@@ -153,3 +148,4 @@ class CheckoutMachine():
         cm_basket, group_total_price = self.apply_group_discount(cm_basket)
         total_price = group_total_price + sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
+
