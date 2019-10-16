@@ -50,7 +50,7 @@ class DiscountStore():
                    }
 
     any_for_price = {('S', 'T', 'X', 'Y', 'Z'): {3: 45}}  # buy any 3 of (S, T, X, Y, Z) for 45
-    #any_for_price_keys = any_for_price.keys()
+
 
 class CheckoutMachine():
     
@@ -145,5 +145,6 @@ class CheckoutMachine():
         cm_basket, group_total_price = self.apply_group_discount(cm_basket)
         total_price = group_total_price + sum(map(self.count_price, cm_basket.items()), 0)
         return total_price
+
 
 
